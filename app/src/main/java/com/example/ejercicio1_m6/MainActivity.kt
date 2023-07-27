@@ -2,14 +2,16 @@ package com.example.ejercicio1_m6
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.ejercicio1_m6.databinding.ActivityMainBinding
+
 /*
 [x] Navigation
 [x] Crear Fragmentos Agregar
 [x] Crear Interfaz para agregar nueva tarea
-[]Room
+[x]Room
     [x]Entity
-    []Dao
-    []BAse_datos
+    [x]Dao
+    [x]BAse_datos
 
 [x] Crear Fragmentos Listado
 
@@ -17,8 +19,10 @@ import android.os.Bundle
 */
 
 class MainActivity : AppCompatActivity() {
+    lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
