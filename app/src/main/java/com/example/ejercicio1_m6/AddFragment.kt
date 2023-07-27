@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.ejercicio1_m6.databinding.FragmentAddBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -33,6 +34,7 @@ class AddFragment : Fragment() {
     ): View? {
         binding = FragmentAddBinding.inflate(layoutInflater,container,false)
       initListener()
+        loadTask()
         return binding.root
     }
 
@@ -40,6 +42,7 @@ class AddFragment : Fragment() {
         binding.buttonAddTask.setOnClickListener(){
             val texto = binding.etAddTask.text.toString()
             saveTask(texto)
+            Toast.makeText(requireContext(), " Texto agregado", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -48,6 +51,15 @@ class AddFragment : Fragment() {
         val task = Task(texto,"fecha")
         GlobalScope.launch { dao.insertarTarea(task) }
 
+
+    }
+    private fun loadTask(){
+        val dao = TaskData.getDatabase(requireContext()).getTaskDao()
+        GlobalScope.launch {
+            val tasks = dao.getTasks()
+            val tasksAsText = tasks.joinToString("\n") { it.nombre }
+            binding.tvShow.text = tasksAsText
+        }
     }
 
 
