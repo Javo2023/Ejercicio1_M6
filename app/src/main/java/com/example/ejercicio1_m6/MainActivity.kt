@@ -7,9 +7,10 @@ import android.os.Bundle
 [x] Crear Fragmentos Agregar
 [x] Crear Interfaz para agregar nueva tarea
 []Room
+    [x]Entity
     []Dao
     []BAse_datos
-    []Entity
+
 [x] Crear Fragmentos Listado
 
 []RecyclerView
