@@ -3,14 +3,14 @@ package com.example.ejercicio1_m6
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 /*
-[] Navigation
-[] Crear Fragmentos Agregar
-[] Crear Interfaz para agregar nueva tarea
+[x] Navigation
+[x] Crear Fragmentos Agregar
+[x] Crear Interfaz para agregar nueva tarea
 []Room
     []Dao
     []BAse_datos
     []Entity
-[] Crear Fragmentos Listado
+[x] Crear Fragmentos Listado
 
 []RecyclerView
 */

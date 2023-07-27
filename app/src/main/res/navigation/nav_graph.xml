@@ -14,5 +14,9 @@
         android:id="@+id/addFragment2"
         android:name="com.example.ejercicio1_m6.AddFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment2_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 </navigation>
