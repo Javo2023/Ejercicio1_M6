@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
 import com.example.ejercicio1_m6.databinding.FragmentAddBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -22,7 +23,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class AddFragment : Fragment() {
 
-  lateinit var binding : FragmentAddBinding
+  lateinit var binding : FragmentAddBinding   // enlaza binding
+  lateinit var repositorio : Repositorio
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,10 +34,15 @@ class AddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddBinding.inflate(layoutInflater,container,false)
+        binding = FragmentAddBinding.inflate(layoutInflater,container,false) // inicializa binding
+        initRepositorio()
       initListener()
         loadTask()
         return binding.root
+    }
+
+    private fun initRepositorio() {
+        repositorio = Repositorio(TaskData.getDatabase(requireContext()).getTaskDao())
     }
 
     private fun initListener() {
@@ -47,19 +54,21 @@ class AddFragment : Fragment() {
     }
 
     private fun saveTask(texto:String) {
-        val dao =TaskData.getDatabase(requireContext()).getTaskDao()
-        val task = Task(texto,"fecha")
-        GlobalScope.launch { dao.insertarTarea(task) }
+        val repositorio =TaskData.getDatabase(requireContext()).getTaskDao()
+        val task = Task(texto," ")
+        GlobalScope.launch { repositorio.insertarTarea(task) }
 
 
     }
     private fun loadTask(){
-        val dao = TaskData.getDatabase(requireContext()).getTaskDao()
-        GlobalScope.launch {
-            val tasks = dao.getTasks()
-            val tasksAsText = tasks.joinToString("\n") { it.nombre }
-            binding.tvShow.text = tasksAsText
-        }
+
+
+            repositorio.getTareas().observe(requireActivity()){
+                val tasksAsText = it.joinToString("\n") { it.nombre }
+                binding.tvShow.text = tasksAsText
+            }
+
+
     }
 
 

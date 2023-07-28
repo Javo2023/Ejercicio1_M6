@@ -1,5 +1,6 @@
 package com.example.ejercicio1_m6
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -11,6 +12,6 @@ interface TaskDao {
 
 @Query("Select * From tabla_tarea order by id asc")
 
-fun getTasks(): List<Task>
+fun getTasks(): LiveData<List<Task>>
 
 }

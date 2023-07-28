@@ -55,7 +55,7 @@
     <TextView
         android:id="@+id/tvShow"
         android:layout_width="186dp"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonAddTask"
