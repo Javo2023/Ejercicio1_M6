@@ -54,9 +54,9 @@ class AddFragment : Fragment() {
     }
 
     private fun saveTask(texto:String) {
-        val repositorio =TaskData.getDatabase(requireContext()).getTaskDao()
+
         val task = Task(texto," ")
-        GlobalScope.launch { repositorio.insertarTarea(task) }
+        GlobalScope.launch { repositorio.insertTask(task) }
 
 
     }
